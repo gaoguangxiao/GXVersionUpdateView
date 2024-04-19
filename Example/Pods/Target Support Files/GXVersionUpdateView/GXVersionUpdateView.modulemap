@@ -1,0 +1,6 @@
+framework module GXVersionUpdateView {
+  umbrella header "GXVersionUpdateView-umbrella.h"
+
+  export *
+  module * { export * }
+}
