@@ -12,6 +12,16 @@ import SnapKit
 
 public class GXVersionUpdateView: UIView {
     
+    public var themeColor: UIColor {
+        get {
+            return self.titleLabel.textColor
+        }
+        set {
+            self.titleLabel.backgroundColor = newValue
+            self.updateButton.backgroundColor = newValue
+        }
+    }
+    
     private let backgroundView = UIView.init()
     
     private let borderView = UIView.init()
@@ -158,27 +168,6 @@ public class GXVersionUpdateView: UIView {
     
     func showVersionUpdateView(vc: UIViewController, title: String, info: String, forceUpdate: Bool, updateEvent: @escaping (Bool)->Void)  {
        
-        /*if let vc = UIApplication.shared.keyWindow?.rootViewController {
-            UserDefaults.VersionUpdate.set(value: "true", forKey: .isUpdate)//标记弹出升级框
-            self.setUpdateInfo(info)
-            self.forceUpdate = forceUpdate
-            self.updateButtonEvent = updateEvent
-            self.titleLabel.text = title
-            
-            vc.view.addSubview(self)
-            self.snp.makeConstraints { (maker) in
-                maker.edges.equalToSuperview()
-            }
-            self.setNeedsLayout()
-            self.layoutIfNeeded()
-        } else {
-            delay(time: 2, task: {
-                self.showVersionUpdateView(title :title,info: info, forceUpdate: forceUpdate, updateEvent: updateEvent)
-            })
-        }*/
-        
-//        UserDefaults.VersionUpdate.set(value: "true", forKey: .isUpdate)标记弹出升级框
-//        self.setUpdateInfo("1提升服务稳定性\n2提升服务稳定性\n3提升服务稳定性\n4提升服务稳定性")
         self.setUpdateInfo(info)
         self.forceUpdate = forceUpdate
         self.updateButtonEvent = updateEvent
