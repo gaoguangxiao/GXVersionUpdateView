@@ -52,7 +52,7 @@ public class GXVersionUpdateTool: NSObject {
             return
         }
         
-        guard download_url.count > 0 , let url = download_url.toUrl  else { return }
+//        guard download_url.count > 0 , let url = download_url.toUrl  else { return }
         
         let currentVersion = kAppVersion ?? ""
        
@@ -101,7 +101,12 @@ public class GXVersionUpdateTool: NSObject {
             UserDefaults.versionUpdate = ""
             if isForceUpdate {
 //                UIApplication.shared.openURL(url)
-                UIApplication.shared.open(url)
+                if let url = download_url.toUrl  {
+                    UIApplication.shared.open(url)
+                } else {
+                    print("失效的URL")
+                }
+//                UIApplication.shared.open(url)
             } else {
                 let cancelUpdateTime = Date.currentTimestamp
                 UserDefaults.standard.set(cancelUpdateTime, forKey: kCancelUpdateTime)
